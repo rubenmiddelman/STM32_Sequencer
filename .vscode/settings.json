@@ -1,0 +1,11 @@
+{
+    "stm32-for-vscode.openOCDPath": "/opt/homebrew/bin/openocd",
+    "files.associations": {
+        "main.h": "c",
+        "led.h": "c",
+        "sequencer.h": "c",
+        "stm32f4xx.h": "c",
+        "midi.h": "c"
+    },
+    "cortex-debug.variableUseNaturalFormat": true
+}
