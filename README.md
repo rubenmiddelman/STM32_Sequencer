@@ -6,10 +6,11 @@ a basic midi sequencer made for STM32F407-disc board
 - midi note on and off
 - simple sequencing
 - notes being played from array
+- python interface to uart
+- WS2812b LED's
 
 ## future features to add
 - Audio not midi output
-- python interface to uart
 - USB midi output
 
 
