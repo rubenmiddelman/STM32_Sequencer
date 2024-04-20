@@ -1,10 +1,31 @@
+/**
+ * @ Author: Ruben Middelman
+ * @ Create Time: 2024-04-16 21:31:01
+ * @ Modified by: Ruben Middelman
+ * @ Modified time: 2024-04-20 03:17:19
+ * @ Description: Driver for WS2812b LED's, code found partly online
+ */
 #include "LEDs.h"
+
+// seeing that we are not using brightness right now we dont really need pi but
+// it is nice if we want to set the birghtness later
+
+#define PI 3.14159265
 
 uint8_t LED_Data[MAX_LEDS][4];
 uint8_t LED_Mod[MAX_LEDS][4];
 uint16_t pwmData[(24 * MAX_LEDS) + 50];
 int datasentflag = 1;
 
+/**
+ * @brief Set LEDS function, Sets LED
+ *
+ * TODO: error handling for when LED outisde of boundry is set
+ * @param LED_Number
+ * @param red
+ * @param green
+ * @param blue
+ */
 void Set_LED(uint8_t LED_Number, uint8_t red, uint8_t green, uint8_t blue) {
   LED_Data[LED_Number][0] = LED_Number;
   LED_Data[LED_Number][1] = green;
@@ -12,8 +33,10 @@ void Set_LED(uint8_t LED_Number, uint8_t red, uint8_t green, uint8_t blue) {
   LED_Data[LED_Number][3] = blue;
 }
 
-#define PI 3.14159265
-
+/**
+ * @brief Turns off LED's
+ *
+ */
 void Set_LEDS_Off() {
   for (int i = 0; i < MAX_LEDS; i++) {
     for (int j = 0; j < 4; j++) {
@@ -25,6 +48,13 @@ void Set_LEDS_Off() {
   }
 }
 
+/**
+ * @brief Sets the LEDs tot he note list (on or off)
+ *
+ * TODO: might be nice to let users select color of on or off LED's
+ *
+ * @param notes_On_Or_Off
+ */
 void Set_LEDs_Note_List(uint8_t *notes_On_Or_Off) {
   for (int i = 0; i < 8; i++) {
     if (notes_On_Or_Off[i]) {
@@ -35,8 +65,12 @@ void Set_LEDs_Note_List(uint8_t *notes_On_Or_Off) {
   }
 }
 
-void Set_Brightness(int brightness) // 0-45
-{
+/**
+ * @brief Sets brightness for LED's
+ *
+ * @param brightness value between 0 and 45 (half of 90 for clock niceness)
+ */
+void Set_Brightness(int brightness) {
 #if USE_BRIGHTNESS
 
   if (brightness > 45)
@@ -53,6 +87,11 @@ void Set_Brightness(int brightness) // 0-45
 #endif
 }
 
+/**
+ * @brief Sends the set LED data to the LED's via PWM via timer 1
+ * also uses DMA to free up CPU
+ *
+ */
 void WS2812_Send(void) {
   uint32_t indx = 0;
   uint32_t color;
@@ -88,6 +127,11 @@ void WS2812_Send(void) {
   datasentflag = 0;
 }
 
+/**
+ * @brief timer PWM Callback to set flag high
+ *
+ * @param htim
+ */
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
   HAL_TIM_PWM_Stop_DMA(&htim1, TIM_CHANNEL_1);
   datasentflag = 1;

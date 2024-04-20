@@ -1,3 +1,10 @@
+/**
+ * @ Author: Ruben Middelman
+ * @ Create Time: 2024-03-21 17:13:12
+ * @ Modified by: Ruben Middelman
+ * @ Modified time: 2024-04-20 03:09:40
+ * @ Description: Main program body
+ */
 /* USER CODE BEGIN Header */
 /**
  ******************************************************************************
@@ -15,6 +22,7 @@
  *
  ******************************************************************************
  */
+
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -107,8 +115,6 @@ int main(void) {
   // know for sure
   int BPM = 120;
   int wait_Time;
-  // uint8_t notes_Values[] = {0, 0, 0, 0, 0, 0, 0, 0};
-  /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
 

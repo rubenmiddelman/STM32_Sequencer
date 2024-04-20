@@ -7,5 +7,29 @@
         "stm32f4xx.h": "c",
         "midi.h": "c"
     },
-    "cortex-debug.variableUseNaturalFormat": true
+    "cortex-debug.variableUseNaturalFormat": true,
+    "autoHeader": {
+        "format": {
+            "startWith": "/**",
+            "middleWith": "*",
+            "endWith": "*/",
+            "headerPrefix": "@",
+        },
+        "header": {
+            "Author": "Ruben Middelman",
+            "Create Time": {
+                "type": "createTime",
+                "format": "YYYY-MM-DD HH:mm:ss",
+            },
+            "Modified by": {
+                "type": "modifier",
+                "value": "Ruben Middelman",
+            },
+            "Modified time": {
+                "type": "modifyTime",
+                "format": "YYYY-MM-DD HH:mm:ss"
+            },
+            "Description": "",
+        }
+    }
 }

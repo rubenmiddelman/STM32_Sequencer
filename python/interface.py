@@ -52,8 +52,6 @@ def Button_Is_Pressed(button_Number, row_Number):
 
 
 # function that makes the array to start
-
-
 def Make_Button_Array(number_Of_Rows, number_Of_Notes):
     for x in range(number_Of_Rows):
         for i in range(number_Of_Notes):
